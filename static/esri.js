@@ -191,36 +191,40 @@ require([
     view.graphics.add(graphic);
   }
 
-  function setCrimeFeatureLayerViewFilter(expression) {
+  function setFeatureLayerViewFilter(expression, expType) {
     view.whenLayerView(featureLayer).then(function(featureLayerView) {
-      if (currentTimeFilter === "") {
-        newFilter = expression;
-      } else {
-        newFilter = "(" + expression + ") AND (" + currentTimeFilter + ")";
-      }
-      currentCrimeFilter = expression;
-      // featureLayerView.filter = {
-      //   where: newFilter
-      // };
-      featureLayer.definitionExpression = newFilter;
+        newFilter = "";
+        filters = [];
+        if (expType == 0) {
+            currentTimeFilter = expression;
+            if (expression != "") {
+                filters.push(expression);
+            }
+        } else if (currentTimeFilter != "") {
+            filters.push(currentTimeFilter);
+        }
+ 
+        if (expType == 1) {
+            currentCrimeFilter = expression;
+            if (expression != "") {
+                filters.push(expression);
+            }
+        } else if (currentCrimeFilter != "") {
+            filters.push(currentCrimeFilter);
+        }
+ 
+        if (filters.length > 0) {
+            for (i = 0; i < filters.length - 1; i++) {
+                newFilter += "(" + filters[i] + ") AND ";
+            }
+            newFilter += "(" + filters[filters.length - 1] + ")";
+            console.log(newFilter);
+        } else {
+            newFilter = "1 = 1";
+        }
+        featureLayer.definitionExpression = newFilter;    
     });
-  }
-
-  function setTimeFeatureLayerViewFilter(expression) {
-    view.whenLayerView(featureLayer).then(function(featureLayerView) {
-      if (currentCrimeFilter === "") {
-        currentTimeFilter = expression;
-        newFilter = expression;
-      } else {
-        newFilter = "(" + expression + ") AND (" + currentCrimeFilter + ")";
-      }
-      currentTimeFilter = expression;
-      // featureLayerView.filter = {
-      //   where: newFilter
-      // };
-      featureLayer.definitionExpression = newFilter;
-    });
-  }
+}
 
   DATE_FILTER.forEach(function(sql) {
     var option = document.createElement("option");
@@ -238,12 +242,12 @@ require([
 
   crimeSelectFilter.addEventListener("change", function(event) {
     // setFeatureLayerFilter(event.target.value);
-    setCrimeFeatureLayerViewFilter(event.target.value);
+    setFeatureLayerViewFilter(event.target.value, 1);
   });
 
   timeSelectFilter.addEventListener("change", function(event) {
     // setFeatureLayerFilter(event.target.value);
-    setTimeFeatureLayerViewFilter(event.target.value);
+    setFeatureLayerViewFilter(event.target.value, 0);
   });
 
   view.ui.add(timeSelectFilter, "top-right");
