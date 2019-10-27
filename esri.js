@@ -5,7 +5,8 @@
  */
 
 const ROUTE_TASK_URL =
-  "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
+  // "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
+  "https://utility.arcgis.com/usrsvcs/appservices/BrvTnRK7wSktVboV/rest/services/World/Route/NAServer/Route_World/solve";
 
 const CRIME_FILTER = [
   "",
@@ -46,9 +47,27 @@ const DATE_FILTER = [
 
 const DATE_FILTER_MAP = {
   "": "All times",
-  "occur_time > 600 AND occur_time < 1200": "Morning",
-  "occur_time > 1200 AND occur_time < 2000": "Mid-day",
-  "occur_time > 2000 OR occur_time < 600": "Night"
+  "occur_time > 600 AND occur_time < 1200": "Morning (6 - 12 AM)",
+  "occur_time > 1200 AND occur_time < 2000": "Mid-day (12 - 8 PM)",
+  "occur_time > 2000 OR occur_time < 600": "Night (8 PM - 6 AM)"
+};
+
+const TIMES = {
+  morning: "Morning",
+  midDay: "Mid-Day",
+  night: "Night"
+};
+
+const getCurrentTime = () => {
+  const date = new Date();
+  const currentHours = date.getHours();
+  if (currentHours >= 6 && currentHours < 12) {
+    return TIMES.morning;
+  } else if (currentHours >= 12 && currentHours < 20) {
+    return TIMES.midDay;
+  } else {
+    return TIMES.night;
+  }
 };
 
 require([
@@ -262,10 +281,6 @@ require([
       addGraphic("start", event.mapPoint);
     }
   });
-
-  async function getCrimeBlockerPolygonBarrier(fl) {
-    await fl.source;
-  }
 
   function getRoute() {
     console.log("in getroute");
