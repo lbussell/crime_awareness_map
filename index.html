@@ -2,15 +2,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>ArcGIS JavaScript Tutorials: Add a layer from an item</title>
+  <title>Safe GaTech</title>
 
   <link rel="stylesheet" href="styles.css" type="text/css">
   <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <script src="https://js.arcgis.com/4.13/"></script>
   <script src="esri.js"></script>
 </head>
 <body>
-  <div id="viewDiv"></div>
+  <nav class="navbar navbar-dark bg-dark navbar-shadow">
+    <div class="container">
+      <span class="navbar-brand mb-0 h1">Safe Ga.Tech</span>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div id="viewDiv" class="esri-map" style="height: 640px; margin-top: 2rem; box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.3);"></div>
+      <div class="howto-text">To find a path around the crime, click the map once for where you are, and again for your destination.</div>
+    </div>
+  </div>
 </body>
 </html>

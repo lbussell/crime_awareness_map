@@ -7,3 +7,17 @@ body,
   height: 100%;
   width: 100%;
 }
+
+.esri-container {
+  border-radius: 1rem;
+  margin-top: 1rem;
+}
+
+.navbar-shadow {
+  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.3);
+}
+
+.howto-text {
+  margin-top: 1rem;
+  color: grey;
+}

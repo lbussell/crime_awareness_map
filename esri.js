@@ -85,7 +85,7 @@ require([
   watchUtils
 ) {
   var map = new Map({
-    basemap: "streets-navigation-vector"
+    basemap: "streets-night-vector"
   });
 
   var view = new MapView({
@@ -123,21 +123,27 @@ require([
     renderer: {
       type: "heatmap",
       colorStops: [
+        // { ratio: 0, color: "rgba(255, 133, 51, 0)" },
+        // { ratio: 0.1, color: "rgba(255, 153/2, 51/2, 0.1)" },
+        // { ratio: 0.4, color: "rgba(255, 204/2, 102/2, 0.1)" },
+        // { ratio: 0.5, color: "rgba(255, 204/2, 153/2, 0.1)" },
+        // { ratio: 1, color: "rgba(255, 230/2, 204/2, 0.1)" }
         { ratio: 0, color: "rgba(179, 216, 222, 0)" },
-        { ratio: 0.1, color: "rgba(201, 157, 201, 1)" },
-        { ratio: 0.4, color: "rgba(220, 90, 93, 1)" },
-        { ratio: 0.6, color: "rgba(233, 150, 87, 1)" },
-        { ratio: 1, color: "rgba(255, 253, 87, 1)" }
+        { ratio: 0.1, color: "rgba(201, 157, 201, 0.1)" },
+        { ratio: 0.4, color: "rgba(220, 90, 93, 0.1)" },
+        { ratio: 0.5, color: "rgba(233, 150, 87, 0.1)" },
+        { ratio: 1, color: "rgba(255, 253, 87, 0.5)" }
       ],
       blurRadius: 10,
-      maxPixelIntensity: 150
+      maxPixelIntensity: 300
     }
   });
 
   var crimeBlockerFeatureLayer = new FeatureLayer({
     url:
       // "https://services6.arcgis.com/4UCoYHnjdXoJ6mNn/arcgis/rest/services/crime_area_polygons/FeatureServer/0",
-      "https://services6.arcgis.com/4UCoYHnjdXoJ6mNn/arcgis/rest/services/ALT_POLYGON/FeatureServer/0",
+      // "https://services6.arcgis.com/4UCoYHnjdXoJ6mNn/arcgis/rest/services/ALT_POLYGON/FeatureServer/0",
+      "https://services6.arcgis.com/4UCoYHnjdXoJ6mNn/arcgis/rest/services/GATECH_POLYS/FeatureServer/0",
     outFields: ["*"]
   });
 
@@ -174,9 +180,11 @@ require([
   function addGraphic(type, point) {
     var graphic = new Graphic({
       symbol: {
-        type: "simple-marker",
-        color: type === "start" ? "white" : "black",
-        size: "8px"
+        type: "picture-marker",
+        url: "./pin.png",
+        width: "64px",
+        height: "64px",
+        yoffset: "32px"
       },
       geometry: point
     });
@@ -279,7 +287,7 @@ require([
           data.routeResults.forEach(function(result) {
             result.route.symbol = {
               type: "simple-line",
-              color: [5, 150, 255],
+              color: [255, 255, 255],
               width: 3
             };
             console.log("adding gfx");
@@ -303,5 +311,5 @@ require([
   // });
 
   map.add(featureLayer);
-  // map.add(crimeBlockerFeatureLayer);
+  map.add(crimeBlockerFeatureLayer);
 });
