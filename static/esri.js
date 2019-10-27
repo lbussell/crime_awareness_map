@@ -5,7 +5,7 @@
  */
 
 const ROUTE_TASK_URL =
-  "https://utility.arcgis.com/usrsvcs/appservices/BrvTnRK7wSktVboV/rest/services/World/Route/NAServer/Route_World/solve";
+  "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
 
 const CRIME_FILTER = [
   "",

@@ -25,7 +25,7 @@ def submit():
     return "Submitted"
 
 def append_geo_json(geo_json):
-    gis = GIS("https://www.arcgis.com", username="deasway", password="blenderiscool1")
+    gis = GIS("https://www.arcgis.com", username="", password="")
     crime_properties = {
         'title': 'Crime data',
         'tags' : 'crimes, open data, devlabs',
