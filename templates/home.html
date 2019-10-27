@@ -4,17 +4,21 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Safe GaTech</title>
 
-  <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
   <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}" type="text/css">
 
   <script src="https://js.arcgis.com/4.13/"></script>
   <script src="{{ url_for('static',filename='esri.js') }}"></script>
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark navbar-shadow">
+  <nav class="navbar navbar-light bg-light navbar-shadow">
     <div class="container">
-      <span class="navbar-brand mb-0 h1">Safe Ga.Tech</span>
+      <a class="navbar-brand">
+        <img src="{{ url_for('static',filename='img/shield_no_bg.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+        Safe Ga.Tech
+        <!-- <span class="navbar-brand mb-0 h1">Safe Ga.Tech</span> -->
+      </a>
     </div>
   </nav>
   <div class="container">

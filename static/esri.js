@@ -181,7 +181,7 @@ require([
     var graphic = new Graphic({
       symbol: {
         type: "picture-marker",
-        url: "/static/img/pin.png",
+        url: "static/img/pin.png",
         width: "64px",
         height: "64px",
         yoffset: "32px"

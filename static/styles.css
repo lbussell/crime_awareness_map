@@ -8,6 +8,10 @@ body,
   width: 100%;
 }
 
+body {
+  background-color: lightgray;
+}
+
 .esri-container {
   border-radius: 1rem;
   margin-top: 1rem;
