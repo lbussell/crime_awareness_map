@@ -311,5 +311,5 @@ require([
   // });
 
   map.add(featureLayer);
-  map.add(crimeBlockerFeatureLayer);
+  // map.add(crimeBlockerFeatureLayer);
 });
