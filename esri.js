@@ -113,8 +113,7 @@ require([
 
   var featureLayer = new FeatureLayer({
     url:
-      "https://services6.arcgis.com/4UCoYHnjdXoJ6mNn/arcgis/rest/services/atl_crime_geo/FeatureServer/0",
-    // "https://services6.arcgis.com/8PWl0yTIua00jYKF/arcgis/rest/services/Crime_data/FeatureServer/0",
+      "https://services6.arcgis.com/8PWl0yTIua00jYKF/arcgis/rest/services/Crime_data/FeatureServer/0",
     outFields: ["*"], // Return all fields so it can be queried client-side
     popupTemplate: {
       // Enable a popup
@@ -125,19 +124,20 @@ require([
       type: "heatmap",
       colorStops: [
         { ratio: 0, color: "rgba(179, 216, 222, 0)" },
-        { ratio: 0.4, color: "rgba(201, 157, 201, 1)" },
-        { ratio: 0.6, color: "rgba(220, 90, 93, 1)" },
-        { ratio: 0.8, color: "rgba(233, 150, 87, 1)" },
+        { ratio: 0.1, color: "rgba(201, 157, 201, 1)" },
+        { ratio: 0.4, color: "rgba(220, 90, 93, 1)" },
+        { ratio: 0.6, color: "rgba(233, 150, 87, 1)" },
         { ratio: 1, color: "rgba(255, 253, 87, 1)" }
       ],
-      blurRadius: 15,
-      maxPixelIntensity: 200
+      blurRadius: 10,
+      maxPixelIntensity: 150
     }
   });
 
   var crimeBlockerFeatureLayer = new FeatureLayer({
     url:
-      "https://services6.arcgis.com/4UCoYHnjdXoJ6mNn/arcgis/rest/services/crime_area_polygons/FeatureServer/0",
+      // "https://services6.arcgis.com/4UCoYHnjdXoJ6mNn/arcgis/rest/services/crime_area_polygons/FeatureServer/0",
+      "https://services6.arcgis.com/4UCoYHnjdXoJ6mNn/arcgis/rest/services/ALT_POLYGON/FeatureServer/0",
     outFields: ["*"]
   });
 
@@ -303,5 +303,5 @@ require([
   // });
 
   map.add(featureLayer);
-  map.add(crimeBlockerFeatureLayer);
+  // map.add(crimeBlockerFeatureLayer);
 });
